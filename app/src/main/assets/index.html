@@ -1,13 +1,75 @@
-<!doctype html>
-<title>Soy un HTML</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Cafe Feedback Form</title>
+    <style>
+    .checked {
+  color: orange;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="radio"] {
+            display: none;
+        }
+        label.star {
+            font-size: 30px;
+            padding: 5px;
+            cursor: pointer;
+            float: right;
+            color: #ccc;
+        }
+        input[type="radio"]:checked ~ label.star:before {
+            content: '\2605'; /* Unicode character for a filled star */
+            color: #FFD700; /* Color of filled star */
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #B08968;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
 
-<style>
-    body {
-        background: salmon
-    }
-</style>
+<h2>Coffee Masters Feedback Form</h2>
+<h3>Quevedo 3367</h3>
+<form action="#" method="post">
+    <label>Rate your experience:</label>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
 
-<h1>Contenido Web</h1>
-<p>Yo soy un <b>HTML</b></p>
+    <label for="review">Leave a review:</label>
+    <textarea id="review" name="review" placeholder="Write your review here..."></textarea>
 
-<button onclick="alert('me apretaste')">Apretame</button>
+    <input type="submit" value="Submit Feedback">
+</form>
+
+<script>src="script.js"</script>
+</body>
+</html>

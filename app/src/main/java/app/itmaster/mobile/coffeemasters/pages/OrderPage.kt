@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.AbsoluteRoundedCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -45,6 +46,7 @@ import androidx.lifecycle.viewmodel.compose.SavedStateHandleSaveableApi
 import androidx.lifecycle.viewmodel.compose.saveable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import app.itmaster.mobile.coffeemasters.data.DataManager
+import app.itmaster.mobile.coffeemasters.ui.theme.Alternative1
 import kotlinx.coroutines.launch
 
 
@@ -71,7 +73,7 @@ fun OrderPage(dataManager: DataManager) {
                 Text(
                     text = "ITEMS",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = colorScheme.primary,
+                    color = Color(0xFF976336),
 
                     modifier = Modifier
                         .background(colorScheme.surfaceVariant)
@@ -86,7 +88,7 @@ fun OrderPage(dataManager: DataManager) {
                                 .fillMaxWidth()
                                 .drawBehind {
                                     drawLine(
-                                        Color(0xFFBA9879),
+                                        Color(0xFFECD0BA),
                                         start = Offset(0f, size.height),
                                         end = Offset(size.width, size.height),
                                         strokeWidth = 2.dp.toPx()
@@ -122,7 +124,7 @@ fun OrderPage(dataManager: DataManager) {
                             )
                             IconButton(onClick = { dataManager.cartRemove(it.product) }) {
                                 Icon(
-                                    Icons.Rounded.Delete,
+                                    Icons.Outlined.Delete,
                                     contentDescription = "Delete Icon"
                                 )
 
@@ -152,7 +154,7 @@ fun OrderPage(dataManager: DataManager) {
                 Text(
                     text = "NAME",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = colorScheme.primary,
+                    color =  Color(0xFF976336),
 
                     modifier = Modifier
                         .background(colorScheme.surfaceVariant)
@@ -171,11 +173,11 @@ fun OrderPage(dataManager: DataManager) {
                 Spacer(modifier = Modifier.height(10.dp))
 
             }
-
-
+        Spacer(modifier = Modifier.height(10.dp))
+Box(modifier = Modifier.align(Alignment.End)){
         Button(
             colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
+                containerColor = Alternative1,
                 contentColor = Color.White
             ),
             onClick = {
@@ -190,7 +192,7 @@ fun OrderPage(dataManager: DataManager) {
         }
         SnackbarHost(hostState = snackbarHostState)
 
-    } }
+    }} }
 
 
 
