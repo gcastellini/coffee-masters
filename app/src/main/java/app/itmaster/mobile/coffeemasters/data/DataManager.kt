@@ -1,13 +1,11 @@
 package app.itmaster.mobile.coffeemasters.data
 
-import android.content.ClipData.Item
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class DataManager: ViewModel() {
     var menu: List<Category> by mutableStateOf(listOf())
@@ -25,12 +23,44 @@ class DataManager: ViewModel() {
     }
 
     fun cartAdd(product: Product) {
-        //TODO: Falta verificar si el producto ya está en el carrito y sumarle uno
+        val existingItem = cart.find {it.product == product}
+        if (existingItem != null){
+            cart = cart.map{
+                if (it.product == product){
+                    ItemInCart(product,it.quantity+1)
+                } else {
+                    it
+                }
+
+            }
+        } else {
         cart = cart + ItemInCart(product, 1)
-        println(cart)
+        }
     }
 
     fun cartRemove(product: Product) {
-        //TODO
+        val existingItem = cart.find { it.product == product }
+
+        if (existingItem != null) {
+            // Item is in the cart, decrement the quantity
+            if (existingItem.quantity > 1) {
+                // If quantity is greater than 1, decrement the quantity
+                cart =cart.map {
+                    if (it.product == product) {
+                        ItemInCart(product, it.quantity - 1)
+                    } else {
+                        it
+                    }
+                }
+            } else {
+                // If quantity is 1, remove the item from the cart
+               cart =cart.filterNot { it.product == product }
+            }
+        }
     }
-}
+
+    fun cartClear(){
+        cart= emptyList()
+    }
+
+    }
