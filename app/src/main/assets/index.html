@@ -10,7 +10,7 @@
   color: orange;
 }
         body {
-            font-family: Arial, sans-serif;
+            font-family:sans-serif;
             margin: 20px;
         }
         form {
@@ -31,9 +31,10 @@
             float: right;
             color: #ccc;
         }
+
         input[type="radio"]:checked ~ label.star:before {
-            content: '\2605'; /* Unicode character for a filled star */
-            color: #FFD700; /* Color of filled star */
+            content: '\2605';
+            color: #FFD700;
         }
         textarea {
             width: 100%;
@@ -42,11 +43,12 @@
             margin-bottom: 10px;
         }
         input[type="submit"] {
+            float: right;
             background-color: #B08968;
             color: white;
             padding: 10px 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 16px;
         }
@@ -58,18 +60,40 @@
 <h3>Quevedo 3367</h3>
 <form action="#" method="post">
     <label>Rate your experience:</label>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
+    <span class="fa fa-star" id="rating 1" onclick=handleStarClick(1)></span>
+    <span class="fa fa-star" id="rating 2" onclick=handleStarClick(2)></span>
+    <span class="fa fa-star" id="rating 3" onclick=handleStarClick(3)></span>
+    <span class="fa fa-star" id="rating 4" onclick=handleStarClick(4)></span>
+    <span class="fa fa-star" id="rating 5" onclick=handleStarClick(5)></span>
 
     <label for="review">Leave a review:</label>
     <textarea id="review" name="review" placeholder="Write your review here..."></textarea>
 
-    <input type="submit" value="Submit Feedback">
+    <input onclick="showToast()" type="submit" value="Submit Feedback">
 </form>
 
-<script>src="script.js"</script>
+<script>
+    const showToast = () => {
+ Android.showToast();
+};
+
+  function handleStarClick(starValue) {
+
+    for (let i = 1; i <= 5; i++) {
+        const element = document.getElementById(`rating ${i}`);
+        if (element) {
+            element.classList.remove("checked");
+        }
+    }
+
+        for (let i = 1; i <= starValue; i++) {
+        const element = document.getElementById(`rating ${i}`);
+        if (element) {
+            element.classList.add("checked");
+        }
+    }
+
+}
+</script>
 </body>
 </html>

@@ -154,45 +154,48 @@ fun OrderPage(dataManager: DataManager) {
                 Text(
                     text = "NAME",
                     style = MaterialTheme.typography.bodyMedium,
-                    color =  Color(0xFF976336),
+                    color = Color(0xFF976336),
 
                     modifier = Modifier
                         .background(colorScheme.surfaceVariant)
                         .padding(10.dp)
                 )
-                Row(modifier=Modifier
-                    .fillMaxWidth(),
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceAround,
                     verticalAlignment = Alignment.CenterVertically
 
-                    ) {
+                ) {
                     SimpleOutlinedTextField()
-                    }
-
                 }
-                Spacer(modifier = Modifier.height(10.dp))
 
             }
-        Spacer(modifier = Modifier.height(10.dp))
-Box(modifier = Modifier.align(Alignment.End)){
-        Button(
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Alternative1,
-                contentColor = Color.White
-            ),
-            onClick = {
-                dataManager.cartClear()
-                val orderNumber = (1..1000).random()
-                scope.launch {
-                    snackbarHostState.showSnackbar("Order ${orderNumber} will be ready in a few minutes")
-                }
-            },
-        ) {
-            Text("Send Order")
-        }
-        SnackbarHost(hostState = snackbarHostState)
+            Spacer(modifier = Modifier.height(10.dp))
 
-    }} }
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+        Box(modifier = Modifier.align(Alignment.End)) {
+            Button(
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Alternative1,
+                    contentColor = Color.White
+                ),
+                onClick = {
+                    dataManager.cartClear()
+                    val orderNumber = (1..1000).random()
+                    scope.launch {
+                        snackbarHostState.showSnackbar("Order ${orderNumber} will be ready in a few minutes")
+                    }
+                },
+            ) {
+                Text("Send Order")
+            }
+            SnackbarHost(hostState = snackbarHostState)
+
+        }
+    }
+}
 
 
 
